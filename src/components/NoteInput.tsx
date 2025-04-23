@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, JSX } from "react";
 import { PenLine } from "lucide-react";
 import { GlobalState } from "../types";
-import ChatInputBar from "./ChatInputBar";
+import InputBar from "./InputBar";
 
 interface NoteInputProps {
   state: GlobalState;
@@ -64,23 +64,7 @@ export default function NoteInput({
   return (
     <main className="flex flex-1 p-6 overflow-auto">
       <div className="flex flex-1 flex-col max-w-3xl mx-auto justify-between">
-        <div className="flex items-center mb-6">
-          <div
-            className={`p-3 rounded-full mr-4 ${
-              darkMode ? "bg-blue-600" : "bg-blue-100"
-            }`}
-          >
-            <PenLine
-              className={`w-6 h-6 ${darkMode ? "text-white" : "text-blue-600"}`}
-            />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold">{greeting}!</h1>
-            <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
-              Type and press Enter to add a line to your note
-            </p>
-          </div>
-        </div>
+        <div className="flex items-center mb-6"></div>
 
         {/* <div>
           <input
@@ -113,7 +97,7 @@ export default function NoteInput({
           </div>
         </div> */}
 
-        <ChatInputBar
+        <InputBar
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           ref={inputRef}

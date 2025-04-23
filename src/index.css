@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.self-center{
+    align-self: center;
+}

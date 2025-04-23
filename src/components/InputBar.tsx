@@ -13,7 +13,7 @@ interface Props {
   ref: React.RefObject<HTMLTextAreaElement | null>;
 }
 
-const ChatInputBar = ({ value, onChange, onKeyDown, ref }: Props) => {
+const InputBar = ({ value, onChange, onKeyDown, ref }: Props) => {
   return (
     <div className="flex flex-col border rounded-xl px-2 py-2 gap-2 bg-gray-800 border-gray-700 shadow-sm w-full max-w-3xl">
       <div className="flex items-center">
@@ -50,4 +50,4 @@ const ChatInputBar = ({ value, onChange, onKeyDown, ref }: Props) => {
   );
 };
 
-export default ChatInputBar;
+export default InputBar;
