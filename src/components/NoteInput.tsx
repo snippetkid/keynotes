@@ -13,7 +13,8 @@ export default function NoteInput({
   createNewNote,
   addLineToCurrentNote,
 }: NoteInputProps): JSX.Element {
-  const { currentInput, setCurrentInput, setShowShortcuts } = state;
+  const { currentInput, setCurrentInput, setShowShortcuts, showShortcuts } =
+    state;
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -32,7 +33,7 @@ export default function NoteInput({
     // Show shortcuts overlay when pressing '?'
     if (e.key === "?" && e.shiftKey) {
       e.preventDefault();
-      setShowShortcuts((prev) => !prev);
+      setShowShortcuts(!showShortcuts);
     }
 
     // Create new note with Ctrl+Enter
