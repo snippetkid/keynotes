@@ -1,15 +1,13 @@
-import React, { JSX } from "react";
-import { Menu, Settings } from "lucide-react";
-import { useGlobalState } from "../state/AppState";
+import { JSX } from "react";
 
 export default function Header(): JSX.Element {
-  const { toggleSidebar, darkMode, toggleDarkMode, setShowShortcuts } =
-    useGlobalState();
+  // const { toggleSidebar, darkMode, toggleDarkMode, setShowShortcuts } =
+  //   useGlobalState();
 
   return (
     <header
       className={`p-4 flex items-center justify-between ${
-        darkMode ? "bg-gray-900" : "bg-white border-gray-200"
+        true ? "bg-gray-900" : "bg-white border-gray-200"
       }`}
     >
       {/* Header content */}

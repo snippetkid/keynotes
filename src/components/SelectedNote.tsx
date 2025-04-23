@@ -1,8 +1,8 @@
-import { GlobalState, Note } from "../types";
+import { AppState, Note } from "../types";
 import { NoNotes } from "./NoNotes";
 
 interface Props {
-  state: GlobalState;
+  state: AppState;
   selectedNote: Note | undefined;
 }
 

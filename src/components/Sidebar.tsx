@@ -6,7 +6,7 @@ import {
   ChevronRight,
   ChevronLeft,
 } from "lucide-react";
-import { useGlobalState } from "../state/AppState";
+import { useAppState } from "../hooks/useAppState";
 import { Note } from "../types";
 import { JSX } from "react";
 
@@ -14,7 +14,7 @@ interface SidebarProps {
   selectedNote: Note | undefined;
 }
 
-export default function Sidebar({ selectedNote }: SidebarProps): JSX.Element {
+export default function Sidebar({}: SidebarProps): JSX.Element {
   const {
     sidebarCollapsed,
     toggleSidebar,
@@ -22,7 +22,7 @@ export default function Sidebar({ selectedNote }: SidebarProps): JSX.Element {
     notes,
     selectedNoteId,
     selectNote,
-  } = useGlobalState();
+  } = useAppState();
 
   return (
     <>

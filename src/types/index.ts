@@ -4,19 +4,19 @@ export interface Note {
   content: string;
 }
 
-export interface GlobalState {
+export interface AppState {
   notes: Note[];
-  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
+  setNotes: (notes: Note[]) => void;
   selectedNoteId: number;
-  setSelectedNoteId: React.Dispatch<React.SetStateAction<number>>;
+  setSelectedNoteId: (id: number) => void;
   currentInput: string;
-  setCurrentInput: React.Dispatch<React.SetStateAction<string>>;
+  setCurrentInput: (input: string) => void;
   sidebarCollapsed: boolean;
-  setSidebarCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
+  setSidebarCollapsed: (collapsed: boolean) => void;
   darkMode: boolean;
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setDarkMode: (mode: boolean) => void;
   showShortcuts: boolean;
-  setShowShortcuts: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowShortcuts: (show: boolean) => void;
   greeting: string;
   toggleSidebar: () => void;
   toggleDarkMode: () => void;

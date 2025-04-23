@@ -1,8 +1,8 @@
-import React, { JSX } from "react";
-import { GlobalState } from "../types";
+import { JSX } from "react";
+import { AppState } from "../types";
 
 interface ShortcutsModalProps {
-  state: GlobalState;
+  state: AppState;
 }
 
 interface Shortcut {

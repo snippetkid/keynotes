@@ -1,10 +1,9 @@
 import React, { useRef, useEffect, JSX } from "react";
-import { PenLine } from "lucide-react";
-import { GlobalState } from "../types";
+import { AppState } from "../types";
 import InputBar from "./InputBar";
 
 interface NoteInputProps {
-  state: GlobalState;
+  state: AppState;
   createNewNote: () => void;
   addLineToCurrentNote: () => void;
 }
@@ -14,13 +13,7 @@ export default function NoteInput({
   createNewNote,
   addLineToCurrentNote,
 }: NoteInputProps): JSX.Element {
-  const {
-    greeting,
-    currentInput,
-    setCurrentInput,
-    darkMode,
-    setShowShortcuts,
-  } = state;
+  const { currentInput, setCurrentInput, setShowShortcuts } = state;
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 

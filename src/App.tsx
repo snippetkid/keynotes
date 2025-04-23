@@ -1,7 +1,6 @@
 import NoteInput from "./components/NoteInput";
 import SelectedNote from "./components/SelectedNote";
-import ShortcutsModal from "./components/ShortcutsModal";
-import { useGlobalState } from "./state/AppState";
+import { useAppState } from "./hooks/useAppState";
 
 export default function App() {
   const {
@@ -11,8 +10,7 @@ export default function App() {
     setSelectedNoteId,
     currentInput,
     setCurrentInput,
-    showShortcuts,
-  } = useGlobalState();
+  } = useAppState();
 
   const createNewNote = (): void => {
     if (currentInput.trim()) {
@@ -53,18 +51,18 @@ export default function App() {
   return (
     <div
       className={`flex h-screen ${
-        useGlobalState.getState().darkMode
+        useAppState.getState().darkMode
           ? "bg-gray-900 text-gray-100"
           : "bg-gray-50 text-gray-800"
       }`}
     >
       <div className="flex-1 flex flex-col">
         <SelectedNote
-          state={useGlobalState.getState()}
+          state={useAppState.getState()}
           selectedNote={selectedNote}
         />
         <NoteInput
-          state={useGlobalState.getState()}
+          state={useAppState.getState()}
           createNewNote={createNewNote}
           addLineToCurrentNote={addLineToCurrentNote}
         />

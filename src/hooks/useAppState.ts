@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { GlobalState } from "../types";
+import { AppState } from "../types";
 
-export const useGlobalState = create<GlobalState>((set, get) => ({
+export const useAppState = create<AppState>((set) => ({
   notes: [],
   setNotes: (notes) => set({ notes }),
   selectedNoteId: 1,
