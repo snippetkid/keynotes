@@ -17,9 +17,12 @@ export default function App() {
     if (currentInput.trim()) {
       const newNote: Note = {
         id: Date.now(),
-        title: currentInput || "Untitled Note",
         lines: [
-          { content: currentInput, timestamp: new Date().toLocaleTimeString() },
+          {
+            id: Date.now(),
+            content: currentInput,
+            timestamp: new Date().toLocaleTimeString(),
+          },
         ],
       };
 
@@ -39,6 +42,7 @@ export default function App() {
             ? {
                 ...note,
                 content: note.lines.push({
+                  id: Date.now(),
                   content: currentInput,
                   timestamp: new Date().toLocaleTimeString(),
                 }),

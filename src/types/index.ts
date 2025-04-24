@@ -1,11 +1,10 @@
 export interface Note {
   id: number;
-  title: string;
   lines: Line[];
 }
 
 export interface Line {
-  id?: number;
+  id: number;
   content: string;
   timestamp: string;
 }
