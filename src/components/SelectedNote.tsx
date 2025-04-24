@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function SelectedNote({ state, selectedNote }: Props) {
-  const { darkMode, notes, setNotes } = state;
+  const { notes, setNotes } = state;
 
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [editingLineId, setEditingId] = useState<number>(0);
