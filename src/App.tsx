@@ -1,7 +1,9 @@
+import { useHotkeys } from "react-hotkeys-hook";
 import NoteInput from "./components/NoteInput";
 import SelectedNote from "./components/SelectedNote";
 import { useAppState } from "./hooks/useAppState";
-import { Note } from "./types";
+import { Note, Shortcuts } from "./types";
+import { Shortcut } from "./components/Shortcut";
 
 export default function App() {
   const {
@@ -12,6 +14,11 @@ export default function App() {
     currentInput,
     setCurrentInput,
   } = useAppState();
+
+  useHotkeys(Shortcuts.DELETE_LAST_LINE, () =>
+    onHotKeyDown(Shortcuts.DELETE_LAST_LINE)
+  );
+  useHotkeys(Shortcuts.DELETE_NOTE, () => onHotKeyDown(Shortcuts.DELETE_NOTE));
 
   const createNewNote = (): void => {
     if (currentInput.trim()) {
@@ -29,6 +36,22 @@ export default function App() {
       setNotes([newNote, ...notes]);
       setSelectedNoteId(newNote.id);
       setCurrentInput("");
+    }
+  };
+
+  const deleteNote = (): void => {
+    const updatedNotes = notes.filter((note) => note.id !== selectedNoteId);
+    setNotes(updatedNotes);
+  };
+
+  const deleteLastLine = (): void => {
+    const selectedNote = notes.find((note) => note.id === selectedNoteId);
+    if (selectedNote) {
+      const updatedLines = selectedNote.lines.slice(0, -1);
+      const updatedNotes = notes.map((note) =>
+        note.id === selectedNoteId ? { ...note, lines: updatedLines } : note
+      );
+      setNotes(updatedNotes);
     }
   };
 
@@ -61,11 +84,23 @@ export default function App() {
   const selectedNote =
     notes.find((note) => note.id === selectedNoteId) || notes[0];
 
+  const onHotKeyDown = (shortcut: Shortcuts): void => {
+    switch (shortcut) {
+      case Shortcuts.DELETE_LAST_LINE:
+        console.log("DELETE_LAST_LINE");
+        deleteLastLine();
+        break;
+      case Shortcuts.DELETE_NOTE:
+        deleteNote();
+        break;
+    }
+  };
+
   return (
     <div
       className={`flex h-screen ${
         useAppState.getState().darkMode
-          ? "bg-gray-900 text-gray-100"
+          ? "bg-slate-950 text-gray-100"
           : "bg-gray-50 text-gray-800"
       }`}
     >
@@ -78,15 +113,11 @@ export default function App() {
           state={useAppState.getState()}
           createNewNote={createNewNote}
           addLineToCurrentNote={addLineToCurrentNote}
+          onHotKeyDown={onHotKeyDown}
         />
       </div>
 
-      {/* <NotePreview
-        state={useGlobalState.getState()}
-        selectedNote={selectedNote}
-      /> */}
-
-      {/* {showShortcuts && <ShortcutsModal state={useGlobalState.getState()} />} */}
+      {/* <Shortcut key={"jmlwl"} action="Delete note" /> */}
     </div>
   );
 }

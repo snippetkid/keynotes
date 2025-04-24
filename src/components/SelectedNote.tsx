@@ -47,9 +47,7 @@ export default function SelectedNote({ state, selectedNote }: Props) {
   return (
     <div className="self-center w-full flex-shrink-0 flex flex-col">
       <div className="flex-1 p-6 overflow-auto">
-        <div
-          className={`p-4 rounded-lg ${darkMode ? "bg-gray-800" : "bg-white"}`}
-        >
+        <div className={`p-4 rounded-lg`}>
           {/* Editable Title */}
 
           {isEditingTitle ? (

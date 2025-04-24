@@ -27,3 +27,15 @@ export interface AppState {
   toggleDarkMode: () => void;
   selectNote: (id: number) => void;
 }
+
+export enum Shortcuts {
+  NEW_NOTE = "ctrl+n",
+  DELETE_NOTE = "ctrl+d",
+  DELETE_LAST_LINE = "ctrl+backspace",
+  TOGGLE_SIDEBAR = "ctrl+b",
+  TOGGLE_DARK_MODE = "ctrl+m",
+  SHOW_SHORTCUTS = "ctrl+shift+h",
+  ADD_LINE = "enter",
+  EDIT_LINE = "f2",
+  DELETE_LINE = "backspace",
+}

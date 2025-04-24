@@ -1,22 +1,43 @@
 import React, { useRef, useEffect, JSX } from "react";
-import { AppState } from "../types";
+import { AppState, Shortcuts } from "../types";
 import InputBar from "./InputBar";
+import { useHotkeys } from "react-hotkeys-hook";
+import { Shortcut } from "./Shortcut";
 
 interface Props {
   state: AppState;
   createNewNote: () => void;
   addLineToCurrentNote: () => void;
+  onHotKeyDown: (shortcut: Shortcuts) => void;
 }
 
 export default function NoteInput({
   state,
   createNewNote,
   addLineToCurrentNote,
-}: Props): JSX.Element {
+  onHotKeyDown,
+}: Props) {
   const { currentInput, setCurrentInput, setShowShortcuts, showShortcuts } =
     state;
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  useHotkeys(
+    Shortcuts.DELETE_LAST_LINE,
+    () => {
+      console.log("DELETE_LAST_LINE");
+      onHotKeyDown(Shortcuts.DELETE_LAST_LINE);
+    },
+    { enableOnFormTags: true },
+    [inputRef]
+  );
+
+  useHotkeys(
+    Shortcuts.DELETE_NOTE,
+    () => onHotKeyDown(Shortcuts.DELETE_NOTE),
+    { enableOnFormTags: true },
+    [inputRef]
+  );
 
   useEffect(() => {
     // Focus input on mount
@@ -47,49 +68,12 @@ export default function NoteInput({
       e.preventDefault();
       addLineToCurrentNote();
     }
-
-    // Toggle sidebar with Ctrl+B
-    if (e.key === "b" && e.ctrlKey) {
-      e.preventDefault();
-      state.toggleSidebar();
-    }
   };
 
   return (
     <main className="flex flex-1 p-6 overflow-auto">
       <div className="flex flex-1 flex-col max-w-3xl mx-auto justify-between">
         <div className="flex items-center mb-6"></div>
-
-        {/* <div>
-          <input
-            ref={inputRef}
-            type="text"
-            value={currentInput}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            placeholder="Type your note here..."
-            className={`w-full p-4 h-12 rounded-lg border focus:ring-1 focus:outline-none ${
-              darkMode
-                ? "bg-gray-800 border-gray-700 focus:ring-gray-600"
-                : "bg-white border-gray-300 focus:ring-gray-600"
-            }`}
-          />
-
-          <div className="mt-4 text-sm text-gray-500 flex flex-wrap gap-2">
-            <span className="px-2 py-1 rounded bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300">
-              Enter: Add line
-            </span>
-            <span className="px-2 py-1 rounded bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300">
-              Ctrl+Enter: New Note
-            </span>
-            <span className="px-2 py-1 rounded bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300">
-              Ctrl+B: Toggle Sidebar
-            </span>
-            <span className="px-2 py-1 rounded bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300">
-              Shift+?: Help
-            </span>
-          </div>
-        </div> */}
 
         <InputBar
           onChange={handleInputChange}
