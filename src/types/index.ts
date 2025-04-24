@@ -1,7 +1,13 @@
 export interface Note {
   id: number;
   title: string;
+  lines: Line[];
+}
+
+export interface Line {
+  id?: number;
   content: string;
+  timestamp: string;
 }
 
 export interface AppState {

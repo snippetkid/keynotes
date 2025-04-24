@@ -22,14 +22,17 @@ export default function SelectedNote({ state, selectedNote }: Props) {
               <h3 className="text-xl mb-2 font-medium text-gray-200">
                 {selectedNote.title}
               </h3>
-              {selectedNote.content
-                .split("\n")
-                .slice(1)
-                .map((line, i) => (
-                  <p key={i} className="my-0.5 text-gray-300">
-                    {line}
-                  </p>
-                ))}
+              {selectedNote.lines.slice(1).map((line, i) => (
+                <p key={i} className="my-0.5 text-gray-300">
+                  <span
+                    className="mr-2 text-sm font-mono text-gray-500"
+                    key={i}
+                  >
+                    {line.timestamp}
+                  </span>
+                  {line.content}
+                </p>
+              ))}
             </div>
           </div>
         ) : (

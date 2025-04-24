@@ -2,7 +2,7 @@ import React, { useRef, useEffect, JSX } from "react";
 import { AppState } from "../types";
 import InputBar from "./InputBar";
 
-interface NoteInputProps {
+interface Props {
   state: AppState;
   createNewNote: () => void;
   addLineToCurrentNote: () => void;
@@ -12,7 +12,7 @@ export default function NoteInput({
   state,
   createNewNote,
   addLineToCurrentNote,
-}: NoteInputProps): JSX.Element {
+}: Props): JSX.Element {
   const { currentInput, setCurrentInput, setShowShortcuts, showShortcuts } =
     state;
 

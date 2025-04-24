@@ -1,6 +1,7 @@
 import NoteInput from "./components/NoteInput";
 import SelectedNote from "./components/SelectedNote";
 import { useAppState } from "./hooks/useAppState";
+import { Note } from "./types";
 
 export default function App() {
   const {
@@ -14,10 +15,12 @@ export default function App() {
 
   const createNewNote = (): void => {
     if (currentInput.trim()) {
-      const newNote = {
+      const newNote: Note = {
         id: Date.now(),
         title: currentInput || "Untitled Note",
-        content: currentInput,
+        lines: [
+          { content: currentInput, timestamp: new Date().toLocaleTimeString() },
+        ],
       };
 
       setNotes([newNote, ...notes]);
@@ -33,7 +36,13 @@ export default function App() {
       if (selectedNote) {
         const updatedNotes = notes.map((note) =>
           note.id === selectedNoteId
-            ? { ...note, content: note.content + "\n" + currentInput }
+            ? {
+                ...note,
+                content: note.lines.push({
+                  content: currentInput,
+                  timestamp: new Date().toLocaleTimeString(),
+                }),
+              }
             : note
         );
 
