@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, JSX } from "react";
+import React, { useRef, useEffect } from "react";
 import { AppState, Shortcuts } from "../types";
 import InputBar from "./InputBar";
 import { useHotkeys } from "react-hotkeys-hook";
-import { Shortcut } from "./Shortcut";
 
 interface Props {
   state: AppState;

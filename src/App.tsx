@@ -3,7 +3,6 @@ import NoteInput from "./components/NoteInput";
 import SelectedNote from "./components/SelectedNote";
 import { useAppState } from "./hooks/useAppState";
 import { Note, Shortcuts } from "./types";
-import { Shortcut } from "./components/Shortcut";
 
 export default function App() {
   const {
